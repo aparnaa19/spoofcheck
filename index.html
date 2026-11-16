@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>spoofcheck</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <nav><b>spoofcheck</b> <a href="federal.html">federal agencies (BOD 18-01)</a></nav>
+
+  <h1>Can this domain be spoofed?</h1>
+  <p class="lead">Checks whether a domain's DNS stops other people from sending email that claims to come from it.</p>
+
+  <form id="form" autocomplete="off">
+    <input id="domain" type="text" placeholder="example.com" spellcheck="false" autocapitalize="off" required>
+    <button type="submit">Check</button>
+  </form>
+  <p class="examples">Try: <a href="?d=cisa.gov">cisa.gov</a> · <a href="?d=github.com">github.com</a> · <a href="?d=example.com">example.com</a></p>
+
+  <p id="status"></p>
+
+  <section id="result" hidden>
+    <div id="verdict"></div>
+    <table class="checks">
+      <tbody id="rows"></tbody>
+    </table>
+    <details>
+      <summary>How this works</summary>
+      <p><b>SPF</b> lists the servers allowed to send mail for a domain. It's checked against the
+      envelope sender, an address recipients never see, so on its own it doesn't stop a forged From line.</p>
+      <p><b>DKIM</b> signs each message so receivers can tell it came from the domain unaltered.</p>
+      <p><b>DMARC</b> ties the two to the visible From address and tells receivers what to do when
+      neither lines up: nothing (<code>p=none</code>), send to spam (<code>p=quarantine</code>) or
+      refuse (<code>p=reject</code>). That's why the verdict is based mostly on DMARC.</p>
+      <p>If a subdomain has no DMARC record of its own, the parent domain's record applies. This page
+      guesses the parent with a short built-in list of suffixes rather than the full Public Suffix List.</p>
+    </details>
+  </section>
+
+  <footer>
+    Lookups go from your browser to Google Public DNS, with Cloudflare as a fallback. Nothing else is sent anywhere.
+    <a href="https://github.com/appu-019/can-i-spoof-fortune500">Source</a>.
+  </footer>
+</main>
+<script src="js/dns.js"></script>
+<script src="js/checks.js"></script>
+<script src="js/checker.js"></script>
+</body>
+</html>
