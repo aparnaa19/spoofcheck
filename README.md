@@ -12,15 +12,18 @@ Two pages, both static, with no build step or dependencies:
 All lookups happen in your browser, over DNS-over-HTTPS to Google Public DNS (with Cloudflare as a fallback).
 Nothing else is sent anywhere, and there's no server-side component.
 
-## Running
+## Getting started
 
-```
-git clone https://github.com/appu-019/spoofcheck
-cd spoofcheck
-```
+1. Clone the repo:
 
-Then open `index.html` in a browser (double-clicking it works). You can link straight to a result with
-`index.html?d=example.com`, or publish the folder with GitHub Pages.
+   ```
+   git clone https://github.com/appu-019/spoofcheck
+   cd spoofcheck
+   ```
+
+2. Open `index.html` in your browser (double-click it in File Explorer, or run `start index.html` in Git Bash on Windows).
+
+You can link straight to a result with `index.html?d=example.com`, or publish the folder with GitHub Pages (Settings → Pages) to get a public link.
 
 ## What the single-domain check looks at
 
