@@ -14,8 +14,13 @@ Nothing else is sent anywhere, and there's no server-side component.
 
 ## Running
 
-Open `index.html` in a browser, or serve the folder with GitHub Pages. You can link straight to a result
-with `index.html?d=example.com`.
+```
+git clone https://github.com/appu-019/spoofcheck
+cd spoofcheck
+```
+
+Then open `index.html` in a browser (double-clicking it works). You can link straight to a result with
+`index.html?d=example.com`, or publish the folder with GitHub Pages.
 
 ## What the single-domain check looks at
 
