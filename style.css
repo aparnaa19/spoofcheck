@@ -1,0 +1,141 @@
+:root {
+  --text: #1f2328;
+  --muted: #656d76;
+  --border: #d0d7de;
+  --panel: #f6f8fa;
+  --link: #0969da;
+  --ok: #1a7f37;
+  --warn: #9a6700;
+  --bad: #cf222e;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  color: var(--text);
+  background: #fff;
+  font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+main { max-width: 860px; margin: 0 auto; padding: 22px 20px 48px; }
+main.wide { max-width: 1180px; }
+
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+nav { display: flex; gap: 18px; align-items: baseline; font-size: 14px; margin-bottom: 26px; }
+
+h1 { font-size: 26px; margin: 0 0 6px; }
+h2 { font-size: 17px; margin: 0 0 4px; }
+.lead { color: var(--muted); margin: 0 0 18px; }
+
+code, pre { font: 12.5px/1.45 ui-monospace, Consolas, "Liberation Mono", monospace; }
+
+form { display: flex; gap: 8px; }
+
+input[type=text], input[type=search], select {
+  font: inherit;
+  padding: 8px 11px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--text);
+}
+
+#domain { flex: 1; font-size: 16px; }
+
+button {
+  font: inherit;
+  padding: 8px 16px;
+  border: 1px solid #1f883d;
+  border-radius: 6px;
+  background: #1f883d;
+  color: #fff;
+  cursor: pointer;
+}
+
+button:disabled { opacity: 0.6; cursor: default; }
+button.secondary { background: var(--panel); color: var(--text); border-color: var(--border); }
+
+.examples { font-size: 13px; color: var(--muted); margin: 8px 0 0; }
+#status { color: var(--muted); min-height: 1.5em; }
+
+.verdict {
+  border: 1px solid var(--border);
+  border-left-width: 4px;
+  border-radius: 6px;
+  padding: 12px 16px;
+  margin: 8px 0 18px;
+}
+
+.verdict p { margin: 0; }
+.verdict.ok { border-left-color: var(--ok); }
+.verdict.warning { border-left-color: var(--warn); }
+.verdict.problem { border-left-color: var(--bad); }
+
+table.checks { width: 100%; border-collapse: collapse; }
+table.checks th, table.checks td { text-align: left; vertical-align: top; padding: 10px 8px; border-top: 1px solid var(--border); }
+table.checks th { width: 70px; font-weight: 600; }
+
+.state { width: 80px; font-size: 13px; font-weight: 600; }
+.state.ok { color: var(--ok); }
+.state.warning { color: var(--warn); }
+.state.problem { color: var(--bad); }
+.state.info { color: var(--muted); }
+
+.muted { color: var(--muted); font-size: 14px; }
+
+pre {
+  margin: 6px 0 0;
+  padding: 7px 9px;
+  background: var(--panel);
+  border-radius: 4px;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+details { margin-top: 22px; font-size: 14px; }
+details summary { cursor: pointer; color: var(--muted); }
+details p { margin: 8px 0; }
+
+footer { margin-top: 36px; font-size: 13px; color: var(--muted); }
+
+/* federal scan */
+
+.controls { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin: 16px 0; }
+#progress { color: var(--muted); font-size: 14px; font-variant-numeric: tabular-nums; }
+
+#summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  margin: 8px 0 18px;
+}
+
+#summary div { padding: 10px 12px; border-left: 1px solid var(--border); }
+#summary div:first-child { border-left: none; }
+#summary dt { font-size: 12.5px; color: var(--muted); }
+#summary dd { margin: 2px 0 0; font-size: 20px; font-weight: 600; font-variant-numeric: tabular-nums; }
+
+.table-wrap { max-height: 640px; overflow: auto; border: 1px solid var(--border); border-radius: 6px; }
+
+table.results { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+table.results th {
+  position: sticky; top: 0; background: var(--panel);
+  text-align: left; font-weight: 600; color: var(--muted);
+  padding: 7px 10px; border-bottom: 1px solid var(--border); white-space: nowrap;
+}
+table.results td { padding: 6px 10px; border-bottom: 1px solid #eaeef2; vertical-align: top; }
+table.results td.mono { font-family: ui-monospace, Consolas, monospace; font-size: 12.5px; white-space: nowrap; }
+
+.nowrap { white-space: nowrap; }
+.cat-compliant { color: var(--ok); }
+.cat-bad { color: var(--bad); }
+.cat-warn { color: var(--warn); }
+
+@media (max-width: 640px) {
+  table.checks th { width: auto; }
+  .state { width: auto; }
+}

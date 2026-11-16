@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>spoofcheck: federal agencies and BOD 18-01</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="wide">
+  <nav><a href="index.html">spoofcheck</a> <b>federal agencies (BOD 18-01)</b></nav>
+
+  <h1>Do federal agencies block spoofed email?</h1>
+  <p class="lead">
+    In 2017 DHS issued <a href="https://www.cisa.gov/binding-operational-directive-18-01">Binding Operational Directive 18-01</a>.
+    By October 16, 2018, every federal executive branch second-level domain had to publish a valid SPF record and a DMARC
+    policy of <code>p=reject</code>, with DMARC aggregate reports going to DHS (<code>reports@dmarc.cyber.dhs.gov</code>).
+    This page checks all <span id="domain-count"></span> federal executive <code>.gov</code> domains against those rules, live, from your browser.
+  </p>
+
+  <div class="controls">
+    <button id="run">Run the scan</button>
+    <button id="export" class="secondary" hidden>Download CSV</button>
+    <span id="progress">About 2,300 DNS lookups. Takes a minute or two.</span>
+  </div>
+
+  <div id="output" hidden>
+    <dl id="summary"></dl>
+
+    <div class="controls">
+      <input type="search" id="q" placeholder="filter by domain or agency">
+      <select id="category"><option value="">all results</option></select>
+      <span id="shown" class="muted"></span>
+    </div>
+
+    <div class="table-wrap">
+      <table class="results">
+        <thead>
+          <tr><th>domain</th><th>agency</th><th>result</th><th>DMARC</th><th>pct</th><th>DHS reports</th><th>SPF</th></tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <details>
+    <summary>What this does and doesn't measure</summary>
+    <p>Only the parts of BOD 18-01 that are visible in DNS are checked: one valid SPF record, DMARC <code>p=reject</code>
+    applied to 100% of mail, and DHS listed in <code>rua</code>. The directive also covers STARTTLS on mail servers and
+    HTTPS on websites, which this page doesn't test.</p>
+    <p>The domain list comes from CISA's <a href="https://github.com/cisagov/dotgov-data">dotgov-data</a> repository
+    (<span id="list-date"></span>). Some of these domains are parked or redirect-only, but the directive applies to them too:
+    an unused domain without DMARC is exactly what a phisher wants.</p>
+    <p>A "lookup failed" result means both DNS resolvers errored for that domain. Running the scan again usually clears it.</p>
+  </details>
+
+  <footer>
+    Lookups go from your browser to Google Public DNS, with Cloudflare as a fallback.
+    <a href="https://github.com/appu-019/can-i-spoof-fortune500">Source</a>.
+  </footer>
+</main>
+<script src="data/federal-domains.js"></script>
+<script src="js/dns.js"></script>
+<script src="js/checks.js"></script>
+<script src="js/federal.js"></script>
+</body>
+</html>
