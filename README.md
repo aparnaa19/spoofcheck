@@ -9,6 +9,8 @@ Two pages, both static, with no build step or dependencies:
 - **`federal.html`** checks all 1,173 US federal executive branch `.gov` domains against the email
   rules in [BOD 18-01](https://www.cisa.gov/binding-operational-directive-18-01).
 
+![single-domain check for cisa.gov](docs/screenshot-domain.png)
+
 All lookups happen in your browser, over DNS-over-HTTPS to Google Public DNS (with Cloudflare as a fallback).
 Nothing else is sent anywhere, and there's no server-side component.
 
