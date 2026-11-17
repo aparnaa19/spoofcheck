@@ -119,7 +119,11 @@ $("run").addEventListener("click", async () => {
   results.sort((a, b) => a.agency.localeCompare(b.agency) || a.domain.localeCompare(b.domain));
 
   const seconds = Math.round((performance.now() - started) / 1000);
-  $("progress").textContent = `Checked ${results.length.toLocaleString()} domains in ${seconds}s on ${new Date().toLocaleString()}.`;
+  const failed = results.filter(r => r.category === "lookup failed").length;
+  $("progress").textContent = `Checked ${results.length.toLocaleString()} domains in ${seconds}s on ${new Date().toLocaleString()}.` +
+    (failed > results.length / 2
+      ? ` Most lookups failed. Your network is probably blocking DNS-over-HTTPS (workplace, school and some building networks do); try another network.`
+      : "");
   $("run").disabled = false;
   $("run").textContent = "Run again";
   $("export").hidden = false;

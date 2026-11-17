@@ -38,6 +38,8 @@ The verdict is driven by DMARC, because it's the only one of these that protects
 SPF on its own only checks the envelope sender.
 
 Known limitations:
+- Networks that block DNS-over-HTTPS (common on workplace and school networks, e.g. with Cisco Umbrella) will stop
+  the lookups. The page says so when that seems to be the cause; a different network, such as a phone hotspot, works.
 - The parent domain for DMARC is guessed with a short built-in list of two-label suffixes (like `co.uk`),
   not the full Public Suffix List.
 - It reads DNS only. It can't see whether a particular receiver actually enforces DMARC, or how its spam

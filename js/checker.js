@@ -41,7 +41,9 @@ async function run(rawDomain) {
   try {
     [spf, dmarc, dkim, mx] = await Promise.all([checkSpf(domain), checkDmarc(domain), checkDkim(domain), checkMx(domain)]);
   } catch (err) {
-    statusLine.textContent = `DNS lookup failed (${err.message}). Check your connection and try again.`;
+    statusLine.textContent = `DNS lookup failed (${err.message}). If you're online, your network is probably blocking ` +
+      "DNS-over-HTTPS. Workplace, school and some building networks do this with filters like Cisco Umbrella. " +
+      "Try a different network, such as a phone hotspot.";
     return;
   }
 
